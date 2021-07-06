@@ -57,6 +57,7 @@
             this.btnBusca.TabIndex = 10;
             this.btnBusca.Text = "Busca";
             this.btnBusca.UseVisualStyleBackColor = true;
+            this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click_1);
             // 
             // txtID
             // 
@@ -108,7 +109,6 @@
             this.btnSalvar.TabIndex = 11;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnAlterar
             // 
@@ -118,6 +118,7 @@
             this.btnAlterar.TabIndex = 12;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnExluir
             // 

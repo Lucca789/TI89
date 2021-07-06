@@ -50,5 +50,49 @@ namespace TI89
             cmd = new MySqlCommand("select max(id) from cadastro",Banco.Abrir());
             id = (int)cmd.ExecuteScalar();
         }
+
+        //alterar
+        public void Alterar ()
+        {
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = Banco.Abrir();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "sp_InsertUpdate";
+            cmd.Parameters.AddWithValue("_id", ID);
+            cmd.Parameters.AddWithValue("_nome", Nome);
+            cmd.Parameters.AddWithValue("_email", Email);
+            cmd.Parameters.AddWithValue("_acao", MySqlDbType.Int32).Value = 2;
+            cmd.ExecuteNonQuery();
+            mensagem = "Registro alterado com Sucesso";
+            
+        }
+
+        //metodo consultar 
+        public void consultar(int _ID)
+        {
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = Banco.Abrir();
+            cmd.CommandText = "select * from cadastro where id = " + _ID;
+            MySqlDataReader dr = cmd.ExecuteReader();
+            //hasRows verifica se teve retorne ou não
+
+            if(!dr.HasRows)
+            {
+                mensagem = "Registro não encontrado";
+                achou = false;
+                return;
+            }
+            else
+            {
+                achou = true;
+                while (dr.Read())
+                {
+                    ID = dr.GetInt32("id");
+                    Nome = dr.GetString("nome");
+                    Email = dr.GetString("email");
+                }
+            }
+
+        }
     }
 }
